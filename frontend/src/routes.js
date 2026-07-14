@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -8,32 +8,26 @@ import Accounts from "./pages/Accounts";
 import Transactions from "./pages/Transactions";
 import Loans from "./pages/Loans";
 
-export default function AppRoutes(){
+function AppRoutes() {
+    return (
+        <Routes>
 
-return(
+            <Route path="/" element={<Home />} />
 
-<BrowserRouter>
+            <Route path="/login" element={<Login />} />
 
-<Routes>
+            <Route path="/register" element={<Register />} />
 
-<Route path="/" element={<Home/>}/>
+            <Route path="/dashboard" element={<Dashboard />} />
 
-<Route path="/login" element={<Login/>}/>
+            <Route path="/accounts" element={<Accounts />} />
 
-<Route path="/register" element={<Register/>}/>
+            <Route path="/transactions" element={<Transactions />} />
 
-<Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/loans" element={<Loans />} />
 
-<Route path="/accounts" element={<Accounts/>}/>
-
-<Route path="/transactions" element={<Transactions/>}/>
-
-<Route path="/loans" element={<Loans/>}/>
-
-</Routes>
-
-</BrowserRouter>
-
-);
-
+        </Routes>
+    );
 }
+
+export default AppRoutes;

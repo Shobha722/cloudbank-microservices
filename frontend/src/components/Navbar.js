@@ -1,35 +1,56 @@
 import { Link } from "react-router-dom";
 
 function Navbar() {
-
     return (
 
-<nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav className="navbar navbar-expand-lg custom-navbar">
 
-<div className="container">
+            <div className="container-fluid">
 
-<Link className="navbar-brand" to="/">
-CloudBank
-</Link>
+                {/* Left Side */}
+                <div className="navbar-left">
 
-<div>
+                    <i className="bi bi-bank2 bank-icon"></i>
 
-<Link className="btn btn-light me-2" to="/login">
-Login
-</Link>
+                </div>
 
-<Link className="btn btn-warning" to="/register">
-Register
-</Link>
 
-</div>
+                {/* Center */}
 
-</div>
+                <div className="navbar-center">
 
-</nav>
+                    <h2>CloudBank</h2>
+
+                    <small>Enterprise Cloud Banking Platform</small>
+
+                </div>
+
+
+                {/* Right Side */}
+
+                <div className="navbar-right">
+
+                    <Link
+                        to="/login"
+                        className="btn btn-light me-2"
+                    >
+                        Login
+                    </Link>
+
+                    <Link
+                        to="/register"
+                        className="btn btn-warning"
+                    >
+                        Register
+                    </Link>
+
+                </div>
+
+            </div>
+
+        </nav>
 
     );
-
 }
 
 export default Navbar;
