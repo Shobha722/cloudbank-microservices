@@ -2,13 +2,21 @@
    Global
 =========================== */
 
-body{
+*{
     margin:0;
     padding:0;
-    background:#eef3f9;
-    font-family:Arial, Helvetica, sans-serif;
+    box-sizing:border-box;
 }
 
+body{
+
+    font-family:"Poppins",sans-serif;
+
+    background:#eef3fb;
+
+    overflow-x:hidden;
+
+}
 .main-content{
     min-height:85vh;
 }

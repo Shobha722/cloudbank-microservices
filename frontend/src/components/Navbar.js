@@ -1,56 +1,118 @@
 import { Link } from "react-router-dom";
 
+import "../styles/navbar.css";
+
 function Navbar() {
-    return (
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark cloudbank-navbar">
 
-        <nav className="navbar navbar-expand-lg custom-navbar">
+      <div className="container">
 
-            <div className="container-fluid">
+        {/* Brand */}
 
-                {/* Left Side */}
-                <div className="navbar-left">
+        <Link to="/" className="navbar-brand d-flex align-items-center">
 
-                    <i className="bi bi-bank2 bank-icon"></i>
+          <i className="bi bi-bank2 bank-logo"></i>
 
-                </div>
+          <div className="brand-text">
 
+            <h2>CloudBank</h2>
 
-                {/* Center */}
+            <span>Enterprise Cloud Banking Platform</span>
 
-                <div className="navbar-center">
+          </div>
 
-                    <h2>CloudBank</h2>
+        </Link>
 
-                    <small>Enterprise Cloud Banking Platform</small>
+        {/* Mobile Button */}
 
-                </div>
+        <button
+          className="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
+        {/* Menu */}
 
-                {/* Right Side */}
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
 
-                <div className="navbar-right">
+          <ul className="navbar-nav align-items-center">
 
-                    <Link
-                        to="/login"
-                        className="btn btn-light me-2"
-                    >
-                        Login
-                    </Link>
+            <li className="nav-item">
 
-                    <Link
-                        to="/register"
-                        className="btn btn-warning"
-                    >
-                        Register
-                    </Link>
+              <Link className="nav-link" to="/">
+                Home
+              </Link>
 
-                </div>
+            </li>
 
-            </div>
+            <li className="nav-item">
 
-        </nav>
+              <Link className="nav-link" to="/dashboard">
+                Dashboard
+              </Link>
 
-    );
+            </li>
+
+            <li className="nav-item">
+
+              <Link className="nav-link" to="/accounts">
+                Accounts
+              </Link>
+
+            </li>
+
+            <li className="nav-item">
+
+              <Link className="nav-link" to="/transactions">
+                Transactions
+              </Link>
+
+            </li>
+
+            <li className="nav-item">
+
+              <Link className="nav-link" to="/loans">
+                Loans
+              </Link>
+
+            </li>
+
+            <li className="nav-item ms-3">
+
+              <Link
+                className="btn btn-outline-light login-btn"
+                to="/login"
+              >
+                Login
+              </Link>
+
+            </li>
+
+            <li className="nav-item ms-2">
+
+              <Link
+                className="btn register-btn"
+                to="/register"
+              >
+                Register
+              </Link>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </nav>
+  );
 }
 
 export default Navbar;

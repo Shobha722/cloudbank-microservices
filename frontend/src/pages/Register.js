@@ -1,46 +1,73 @@
-function Register(){
+import React from "react";
 
-return(
+function Register() {
 
-<div className="container mt-5">
+    return (
 
-<h2>Create Account</h2>
+        <div className="container mt-5">
 
-<form>
+            <div className="row justify-content-center">
 
-<input
-className="form-control mb-3"
-placeholder="Full Name"
-/>
+                <div className="col-md-6">
 
-<input
-className="form-control mb-3"
-placeholder="Email"
-/>
+                    <div className="login-card">
 
-<input
-className="form-control mb-3"
-placeholder="Username"
-/>
+                        <h2 className="text-center mb-4">
 
-<input
-type="password"
-className="form-control mb-3"
-placeholder="Password"
-/>
+                            Create CloudBank Account
 
-<button
-className="btn btn-success">
+                        </h2>
 
-Register
+                        <form>
 
-</button>
+                            <input
+                                type="text"
+                                className="form-control mb-3"
+                                placeholder="Full Name"
+                            />
 
-</form>
+                            <input
+                                type="email"
+                                className="form-control mb-3"
+                                placeholder="Email Address"
+                            />
 
-</div>
+                            <input
+                                type="text"
+                                className="form-control mb-3"
+                                placeholder="Mobile Number"
+                            />
 
-);
+                            <input
+                                type="password"
+                                className="form-control mb-3"
+                                placeholder="Password"
+                            />
+
+                            <input
+                                type="password"
+                                className="form-control mb-4"
+                                placeholder="Confirm Password"
+                            />
+
+                            <button
+                                className="btn btn-success w-100">
+
+                                Register
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    );
 
 }
 

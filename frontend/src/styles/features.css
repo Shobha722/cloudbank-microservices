@@ -1,0 +1,61 @@
+.features-section{
+
+    padding:90px 0;
+
+    background:#f5f9ff;
+
+}
+
+.features-section h2{
+
+    color:#001B5E;
+
+    font-weight:700;
+
+}
+
+.feature-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    height:100%;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.feature-card i{
+
+    font-size:55px;
+
+    color:#FFC107;
+
+}
+
+.feature-card h4{
+
+    margin-top:20px;
+
+    color:#001B5E;
+
+}
+
+.feature-card p{
+
+    color:#666;
+
+}
