@@ -1,0 +1,9 @@
+class Config:
+
+    APP_NAME = "CloudBank Auth Service"
+
+    DEBUG = True
+
+    HOST = "0.0.0.0"
+
+    PORT = 5000

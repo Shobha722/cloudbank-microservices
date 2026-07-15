@@ -1,0 +1,3 @@
+class CloudBankException(Exception):
+
+    pass

@@ -1,0 +1,27 @@
+from flask import Flask
+
+from flask_cors import CORS
+
+from config import Config
+
+from routes.notification_routes import notification
+
+app = Flask(__name__)
+
+app.config.from_object(Config)
+
+CORS(app)
+
+app.register_blueprint(notification)
+
+if __name__ == "__main__":
+
+    app.run(
+
+        host=Config.HOST,
+
+        port=Config.PORT,
+
+        debug=Config.DEBUG
+
+    )
