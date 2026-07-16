@@ -1,10 +1,16 @@
 apiVersion: v1
 kind: ConfigMap
+
 metadata:
-  name : cloudbank-config
+  name: cloudbank-config
   namespace: cloudbank
 
 data:
+
+  APP_ENV: "production"
+
+  LOG_LEVEL: "INFO"
+
   AUTH_SERVICE_URL: "http://auth-service:5000"
 
   ACCOUNT_SERVICE_URL: "http://account-service:5001"
@@ -15,6 +21,6 @@ data:
 
   NOTIFICATION_SERVICE_URL: "http://notification-service:5004"
 
-  APP_ENV: "production"
+  API_GATEWAY_URL: "http://api-gateway:8080"
 
-  LOG_LEVEL: "INFO"
+  REACT_APP_API_URL: "http://api-gateway:8080"
