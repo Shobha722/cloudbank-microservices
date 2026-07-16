@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: transaction-service
+  namespace: cloudbank
+  labels:
+    app: transaction-service
+    tier: backend
+
+spec:
+  replicas: 2
+
+  revisionHistoryLimit: 5
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+
+  selector:
+    matchLabels:
+      app: transaction-service
+
+  template:
+    metadata:
+      labels:
+        app: transaction-service
+        tier: backend
+
+    spec:
+      containers:
+      - name: transaction-service
+
+        image: shobha722/cloudbank-transactionsvc:v2 
+
+        imagePullPolicy: Always
+
+        ports:
+        - containerPort: 5002
+
+        envFrom:
+        - configMapRef:
+            name: cloudbank-config
+        - secretRef:
+            name: cloudbank-secret
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5002
+          initialDelaySeconds: 30
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5002
+          initialDelaySeconds: 15
+          periodSeconds: 5
