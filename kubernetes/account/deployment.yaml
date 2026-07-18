@@ -35,7 +35,7 @@ spec:
 
       - name: account-service
 
-        image: shobha722/cloudbank-acctsvc:v2
+        image: shobha722/account-service:v3
 
         imagePullPolicy: Always
 
@@ -48,7 +48,12 @@ spec:
 
         - secretRef:
             name: cloudbank-secret
-
+        - secretRef:
+            name: postgres-secret
+      
+        - configMapRef:
+            name: postgres-config
+      
         resources:
           requests:
             cpu: "100m"

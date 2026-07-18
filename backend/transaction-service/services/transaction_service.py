@@ -1,32 +1,71 @@
-transactions = [
+from models.transaction import Transaction
+from repository.transaction_repository import (
+    create_transaction,
+    get_all_transactions,
+    get_transaction,
+    delete_transaction
+)
 
-    {
-        "id": 1,
-        "date": "15-Jul-2026",
-        "description": "Salary Credit",
-        "amount": 50000,
-        "type": "Credit"
-    },
 
-    {
-        "id": 2,
-        "date": "16-Jul-2026",
-        "description": "Amazon Purchase",
-        "amount": -2500,
-        "type": "Debit"
-    },
+def add_transaction(data):
 
-    {
-        "id": 3,
-        "date": "17-Jul-2026",
-        "description": "Electricity Bill",
-        "amount": -1200,
-        "type": "Debit"
+    transaction = Transaction(
+        account_number=data["account_number"],
+        transaction_type=data["transaction_type"],
+        amount=data["amount"]
+    )
+
+    create_transaction(transaction)
+
+    return {
+        "message": "Transaction Created Successfully"
     }
 
-]
+
+def fetch_transactions():
+
+    transactions = get_all_transactions()
+
+    result = []
+
+    for transaction in transactions:
+
+        result.append({
+            "id": transaction.id,
+            "account_number": transaction.account_number,
+            "transaction_type": transaction.transaction_type,
+            "amount": float(transaction.amount),
+            "transaction_date": str(transaction.transaction_date)
+        })
+
+    return result
 
 
-def get_all_transactions():
+def fetch_transaction(transaction_id):
 
-    return transactions
+    transaction = get_transaction(transaction_id)
+
+    if transaction is None:
+        return {"message": "Transaction Not Found"}, 404
+
+    return {
+        "id": transaction.id,
+        "account_number": transaction.account_number,
+        "transaction_type": transaction.transaction_type,
+        "amount": float(transaction.amount),
+        "transaction_date": str(transaction.transaction_date)
+    }
+
+
+def remove_transaction(transaction_id):
+
+    transaction = get_transaction(transaction_id)
+
+    if transaction is None:
+        return {"message": "Transaction Not Found"}, 404
+
+    delete_transaction(transaction)
+
+    return {
+        "message": "Transaction Deleted Successfully"
+    }

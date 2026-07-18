@@ -33,7 +33,7 @@ spec:
       containers:
       - name: transaction-service
 
-        image: shobha722/cloudbank-transactionsvc:v2 
+        image: shobha722/transaction-service:v4
 
         imagePullPolicy: Always
 
@@ -45,7 +45,12 @@ spec:
             name: cloudbank-config
         - secretRef:
             name: cloudbank-secret
-
+        - secretRef:
+            name: postgres-secret
+      
+        - configMapRef:
+            name: postgres-config
+      
         resources:
           requests:
             cpu: "100m"

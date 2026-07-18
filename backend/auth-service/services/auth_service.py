@@ -1,35 +1,38 @@
-from flask import jsonify
+from repository.user_repository import create_user
+from repository.user_repository import get_user
 
 
 def register_user(data):
 
+    user = create_user(
+        data["username"],
+        data["password"],
+        data["email"]
+    )
+
     return {
-
         "message": "User Registered Successfully",
-
-        "user": data
-
+        "username": user.username
     }
 
 
 def login_user(data):
 
-    username = data.get("username")
+    user = get_user(data["username"])
 
-    password = data.get("password")
+    if user is None:
 
-    if username == "admin" and password == "admin123":
+        return {
+            "message": "Invalid Username"
+        }, 401
 
-        return jsonify({
+    if user.password != data["password"]:
 
-            "message": "Login Successful",
+        return {
+            "message": "Invalid Password"
+        }, 401
 
-            "token": "sample-jwt-token"
-
-        })
-
-    return jsonify({
-
-        "message": "Invalid Username or Password"
-
-    }), 401
+    return {
+        "message": "Login Successful",
+        "username": user.username
+    }

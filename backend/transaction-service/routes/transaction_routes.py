@@ -1,6 +1,11 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint
 
-from services.transaction_service import get_all_transactions
+from controllers.transaction_controller import (
+    create,
+    get_all,
+    get_one,
+    delete
+)
 
 transaction = Blueprint("transaction", __name__)
 
@@ -8,16 +13,31 @@ transaction = Blueprint("transaction", __name__)
 @transaction.route("/health", methods=["GET"])
 def health():
 
-    return jsonify({
+    return {
+        "service": "Transaction Service",
+        "status": "UP"
+    }
 
-        "status": "UP",
 
-        "service": "Transaction Service"
+@transaction.route("/transactions", methods=["POST"])
+def create_transaction():
 
-    })
+    return create()
 
 
 @transaction.route("/transactions", methods=["GET"])
-def transactions():
+def list_transactions():
 
-    return jsonify(get_all_transactions())
+    return get_all()
+
+
+@transaction.route("/transactions/<int:transaction_id>", methods=["GET"])
+def get_transaction(transaction_id):
+
+    return get_one(transaction_id)
+
+
+@transaction.route("/transactions/<int:transaction_id>", methods=["DELETE"])
+def delete_transaction(transaction_id):
+
+    return delete(transaction_id)

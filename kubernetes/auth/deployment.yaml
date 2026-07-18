@@ -36,7 +36,7 @@ spec:
 
       - name: auth-service
 
-        image: shobha722/cloudbank-authservice:v1
+        image: shobha722/auth-service:v3 
 
         imagePullPolicy: Always
 
@@ -48,7 +48,9 @@ spec:
             name: cloudbank-config
 
         - secretRef:
-            name: cloudbank-secret
+           name: postgres-secret
+        - configMapRef:
+           name: postgres-config
 
         resources:
 

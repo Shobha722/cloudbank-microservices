@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: postgres-config
+  namespace: cloudbank
+
+data:
+
+  POSTGRES_HOST: postgres-service
+
+  POSTGRES_PORT: "5432"
