@@ -1,10 +1,21 @@
 import requests
 
-from config import Config
+def forward_get(url):
+
+    response = requests.get(url)
+
+    return response.json(), response.status_code
 
 
-def forward_request(service_url):
+def forward_post(url, data):
 
-    response = requests.get(service_url)
+    response = requests.post(url, json=data)
 
-    return response.json()
+    return response.json(), response.status_code
+
+
+def forward_delete(url):
+
+    response = requests.delete(url)
+
+    return response.json(), response.status_code

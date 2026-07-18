@@ -1,75 +1,128 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 
 from config import Config
 
-from services.gateway_service import forward_request
+from services.gateway_service import (
+    forward_get,
+    forward_post,
+    forward_delete
+)
 
 gateway = Blueprint("gateway", __name__)
 
 
-@gateway.route("/health", methods=["GET"])
+@gateway.route("/health")
 def health():
 
     return jsonify({
-
-        "status": "UP",
-
-        "service": "API Gateway"
-
+        "service": "API Gateway",
+        "status": "UP"
     })
 
 
-@gateway.route("/accounts", methods=["GET"])
+# ---------------- AUTH ---------------- #
+
+@gateway.route("/register", methods=["POST"])
+def register():
+
+    response, status = forward_post(
+        Config.AUTH_SERVICE + "/register",
+        request.json
+    )
+
+    return jsonify(response), status
+
+
+@gateway.route("/login", methods=["POST"])
+def login():
+
+    response, status = forward_post(
+        Config.AUTH_SERVICE + "/login",
+        request.json
+    )
+
+    return jsonify(response), status
+
+
+# ---------------- ACCOUNT ---------------- #
+
+@gateway.route("/accounts", methods=["GET", "POST"])
 def accounts():
 
-    return jsonify(
+    if request.method == "GET":
 
-        forward_request(
-
+        response, status = forward_get(
             Config.ACCOUNT_SERVICE + "/accounts"
-
         )
 
-    )
+    else:
+
+        response, status = forward_post(
+            Config.ACCOUNT_SERVICE + "/accounts",
+            request.json
+        )
+
+    return jsonify(response), status
 
 
-@gateway.route("/transactions", methods=["GET"])
+# ---------------- TRANSACTION ---------------- #
+
+@gateway.route("/transactions", methods=["GET", "POST"])
 def transactions():
 
-    return jsonify(
+    if request.method == "GET":
 
-        forward_request(
-
+        response, status = forward_get(
             Config.TRANSACTION_SERVICE + "/transactions"
-
         )
 
-    )
+    else:
+
+        response, status = forward_post(
+            Config.TRANSACTION_SERVICE + "/transactions",
+            request.json
+        )
+
+    return jsonify(response), status
 
 
-@gateway.route("/loans", methods=["GET"])
+# ---------------- LOAN ---------------- #
+
+@gateway.route("/loans", methods=["GET", "POST"])
 def loans():
 
-    return jsonify(
+    if request.method == "GET":
 
-        forward_request(
-
+        response, status = forward_get(
             Config.LOAN_SERVICE + "/loans"
-
         )
 
-    )
+    else:
+
+        response, status = forward_post(
+            Config.LOAN_SERVICE + "/loans",
+            request.json
+        )
+
+    return jsonify(response), status
 
 
-@gateway.route("/notifications", methods=["GET"])
+# ---------------- NOTIFICATION ---------------- #
+
+@gateway.route("/notifications", methods=["GET", "POST"])
 def notifications():
 
-    return jsonify(
+    if request.method == "GET":
 
-        forward_request(
-
+        response, status = forward_get(
             Config.NOTIFICATION_SERVICE + "/notifications"
-
         )
 
-    )
+    else:
+
+        response, status = forward_post(
+            Config.NOTIFICATION_SERVICE + "/notifications",
+            request.json
+        )
+
+    return jsonify(response), status

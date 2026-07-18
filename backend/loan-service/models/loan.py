@@ -1,27 +1,21 @@
-class Loan:
 
-    def __init__(
+from database.db import db
 
-        self,
+class Loan(db.Model):
 
-        loanId,
+    __tablename__ = "loans"
 
-        loanType,
+    id = db.Column(db.Integer, primary_key=True)
 
-        amount,
+    customer_name = db.Column(db.String(100))
 
-        interestRate,
+    loan_type = db.Column(db.String(50))
 
-        status
+    amount = db.Column(db.Numeric(15,2))
 
-    ):
+    status = db.Column(db.String(30))
 
-        self.loanId = loanId
-
-        self.loanType = loanType
-
-        self.amount = amount
-
-        self.interestRate = interestRate
-
-        self.status = status
+    created_at = db.Column(
+        db.DateTime,
+        server_default=db.func.now()
+    )

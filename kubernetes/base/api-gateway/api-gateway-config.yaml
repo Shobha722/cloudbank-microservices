@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-gateway-config
+  namespace: cloudbank
+data:
+  AUTH_SERVICE: "http://auth-service:5000"
+  ACCOUNT_SERVICE: "http://account-service:5001"
+  TRANSACTION_SERVICE: "http://transaction-service:5002"
+  LOAN_SERVICE: "http://loan-service:5003"
+  NOTIFICATION_SERVICE: "http://notification-service:5004"

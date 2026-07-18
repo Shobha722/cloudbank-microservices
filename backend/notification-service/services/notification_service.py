@@ -1,44 +1,72 @@
-notifications = [
+from models.notification import Notification
 
-    {
+from repository.notification_repository import (
+    create_notification,
+    get_all_notifications,
+    get_notification,
+    delete_notification
+)
 
-        "notificationId":1,
 
-        "title":"Salary Credited",
+def add_notification(data):
 
-        "message":"₹50,000 has been credited to your account.",
+    notification = Notification(
+        customer_name=data["customer_name"],
+        message=data["message"],
+        status=data["status"]
+    )
 
-        "status":"Unread"
+    create_notification(notification)
 
-    },
-
-    {
-
-        "notificationId":2,
-
-        "title":"Loan Approved",
-
-        "message":"Your Home Loan has been approved.",
-
-        "status":"Read"
-
-    },
-
-    {
-
-        "notificationId":3,
-
-        "title":"Debit Alert",
-
-        "message":"₹2,500 debited via Amazon Purchase.",
-
-        "status":"Unread"
-
+    return {
+        "message": "Notification Created Successfully"
     }
 
-]
+
+def fetch_notifications():
+
+    notifications = get_all_notifications()
+
+    result = []
+
+    for notification in notifications:
+
+        result.append({
+            "id": notification.id,
+            "customer_name": notification.customer_name,
+            "message": notification.message,
+            "status": notification.status,
+            "created_at": str(notification.created_at)
+        })
+
+    return result
 
 
-def get_notifications():
+def fetch_notification(notification_id):
 
-    return notifications
+    notification = get_notification(notification_id)
+
+    if notification is None:
+        return {"message": "Notification Not Found"}, 404
+
+    return {
+        "id": notification.id,
+        "customer_name": notification.customer_name,
+        "message": notification.message,
+        "status": notification.status,
+        "created_at": str(notification.created_at)
+    }
+
+
+def remove_notification(notification_id):
+
+    notification = get_notification(notification_id)
+
+    if notification is None:
+        return {"message": "Notification Not Found"}, 404
+
+    delete_notification(notification)
+
+    return {
+        "message": "Notification Deleted Successfully"
+    }

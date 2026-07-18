@@ -1,23 +1,18 @@
-class Notification:
+from database.db import db
 
-    def __init__(
+class Notification(db.Model):
 
-        self,
+    __tablename__ = "notifications"
 
-        notificationId,
+    id = db.Column(db.Integer, primary_key=True)
 
-        title,
+    customer_name = db.Column(db.String(100))
 
-        message,
+    message = db.Column(db.Text)
 
-        status
+    status = db.Column(db.String(20))
 
-    ):
-
-        self.notificationId = notificationId
-
-        self.title = title
-
-        self.message = message
-
-        self.status = status
+    created_at = db.Column(
+        db.DateTime,
+        server_default=db.func.now()
+    )

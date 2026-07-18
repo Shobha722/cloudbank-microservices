@@ -1,19 +1,36 @@
+import os
+
 class Config:
 
     APP_NAME = "CloudBank API Gateway"
 
-    DEBUG = True
+    DEBUG = os.getenv("DEBUG", "True") == "True"
 
     HOST = "0.0.0.0"
 
-    PORT = 8080
+    PORT = int(os.getenv("PORT", 8080))
 
-    AUTH_SERVICE = "http://localhost:5000"
+    AUTH_SERVICE = os.getenv(
+        "AUTH_SERVICE",
+        "http://auth-service:5000"
+    )
 
-    ACCOUNT_SERVICE = "http://localhost:5001"
+    ACCOUNT_SERVICE = os.getenv(
+        "ACCOUNT_SERVICE",
+        "http://account-service:5001"
+    )
 
-    TRANSACTION_SERVICE = "http://localhost:5002"
+    TRANSACTION_SERVICE = os.getenv(
+        "TRANSACTION_SERVICE",
+        "http://transaction-service:5002"
+    )
 
-    LOAN_SERVICE = "http://localhost:5003"
+    LOAN_SERVICE = os.getenv(
+        "LOAN_SERVICE",
+        "http://loan-service:5003"
+    )
 
-    NOTIFICATION_SERVICE = "http://localhost:5004"
+    NOTIFICATION_SERVICE = os.getenv(
+        "NOTIFICATION_SERVICE",
+        "http://notification-service:5004"
+    )
