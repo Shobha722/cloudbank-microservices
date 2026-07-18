@@ -1,0 +1,84 @@
+.dashboard-card{
+
+background:white;
+
+border-radius:18px;
+
+padding:30px;
+
+text-align:center;
+
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+transition:.3s;
+
+height:100%;
+
+}
+
+.dashboard-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.dashboard-card i{
+
+font-size:50px;
+
+color:#001B5E;
+
+}
+
+.dashboard-card h6{
+
+margin-top:15px;
+
+color:#666;
+
+}
+
+.dashboard-card h3{
+
+color:#001B5E;
+
+font-weight:700;
+
+}
+.dashboard-table{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+.dashboard-table h3{
+
+    color:#001B5E;
+
+    font-weight:700;
+
+}
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table thead{
+
+    background:#001B5E;
+
+}
+
+.table thead th{
+
+    color:#001B5E;
+
+}
