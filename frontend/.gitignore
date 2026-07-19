@@ -21,3 +21,24 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+# Python
+**/venv/
+**/__pycache__/
+*.pyc
+
+# Node
+**/node_modules/
+
+# Sonar
+.scannerwork/
+
+# Build
+build/
+dist/
+coverage/
+
+# IDE
+.vscode/
+.idea/
