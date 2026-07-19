@@ -1,0 +1,107 @@
+.hero-section{
+
+    min-height:90vh;
+
+    background:linear-gradient(
+        rgba(0,27,94,.88),
+        rgba(0,27,94,.88)
+    ),
+    url("https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80");
+
+    background-size:cover;
+
+    background-position:center;
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+.hero-overlay{
+
+    width:100%;
+
+    padding:60px 0;
+
+}
+
+.hero-tag{
+
+    display:inline-block;
+
+    background:#FFC107;
+
+    color:#001B5E;
+
+    padding:8px 20px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+    margin-bottom:25px;
+
+}
+
+.hero-content h1{
+
+    color:white;
+
+    font-size:62px;
+
+    font-weight:700;
+
+    line-height:1.2;
+
+}
+
+.hero-content p{
+
+    color:#E2E8F0;
+
+    font-size:20px;
+
+    margin-top:25px;
+
+    line-height:1.8;
+
+}
+
+.hero-buttons{
+
+    margin-top:35px;
+
+}
+
+.hero-stats{
+
+    display:flex;
+
+    gap:60px;
+
+}
+
+.hero-stats h3{
+
+    color:#FFC107;
+
+    font-size:34px;
+
+    margin-bottom:5px;
+
+}
+
+.hero-stats span{
+
+    color:white;
+
+}
+
+.hero-bank-icon{
+
+    font-size:220px;
+
+    color:#FFC107;
+
+}

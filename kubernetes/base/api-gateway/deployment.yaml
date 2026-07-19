@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: api-gateway
+  namespace: cloudbank
+  labels:
+    app: api-gateway
+    tier: gateway
+
+spec:
+  replicas: 2
+
+  revisionHistoryLimit: 5
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+
+  selector:
+    matchLabels:
+      app: api-gateway
+
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+        tier: gateway
+
+    spec:
+      containers:
+
+      - name: api-gateway
+
+        image: shobha722/api-gateway:v3
+
+        imagePullPolicy: Always
+
+        ports:
+        - containerPort: 8080
+
+        envFrom:
+        - configMapRef:
+            name: cloudbank-config
+        - secretRef:
+            name: cloudbank-secret
+        - configMapRef:
+            name: api-gateway-config
+
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+
+          limits:
+            cpu: "1000m"
+            memory: "1Gi"
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 5

@@ -1,0 +1,61 @@
+.statistics-section{
+
+    background:#001B5E;
+
+    padding:90px 0;
+
+}
+
+.statistics-section h2{
+
+    color:white;
+
+    font-weight:700;
+
+}
+
+.statistics-section p{
+
+    color:#d8d8d8;
+
+}
+
+.stat-card{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    transition:.4s;
+
+    height:100%;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.stat-card h1{
+
+    color:#FFC107;
+
+    font-size:50px;
+
+    font-weight:bold;
+
+}
+
+.stat-card h5{
+
+    color:#001B5E;
+
+    margin-top:15px;
+
+}

@@ -1,0 +1,55 @@
+.login-card{
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(16px);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.30);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    color:white;
+
+}
+
+.login-card label{
+
+    color:white;
+
+}
+
+.login-card input{
+
+    height:50px;
+
+    border-radius:10px;
+
+}
+
+.login-button{
+
+    font-weight:bold;
+
+    height:48px;
+
+    border-radius:10px;
+
+}
+
+.login-card a{
+
+    color:#FFD54F;
+
+    text-decoration:none;
+
+}
+
+.login-card a:hover{
+
+    color:white;
+
+}

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: cloudbank
+data:
+  REACT_APP_API_URL: "http://api-gateway:8080"

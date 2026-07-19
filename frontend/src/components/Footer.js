@@ -1,14 +1,38 @@
-function Footer(){
+import React from "react";
 
-return(
+function Footer() {
 
-<footer className="bg-dark text-white text-center p-3 mt-5">
+    return (
 
-© 2026 CloudBank
+        <footer className="bg-dark text-white mt-5 py-4">
 
-</footer>
+            <div className="container text-center">
 
-);
+                <h5>🏦 CloudBank</h5>
+
+                <p>
+
+                    Secure Cloud Native Banking Platform
+
+                </p>
+
+                <p>
+
+                    React | Flask | Docker | Kubernetes | AWS EKS
+
+                </p>
+
+                <small>
+
+                    © 2026 CloudBank. All Rights Reserved.
+
+                </small>
+
+            </div>
+
+        </footer>
+
+    );
 
 }
 

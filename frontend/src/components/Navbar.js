@@ -1,35 +1,118 @@
 import { Link } from "react-router-dom";
 
+import "../styles/navbar.css";
+
 function Navbar() {
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark cloudbank-navbar">
 
-    return (
+      <div className="container">
 
-<nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        {/* Brand */}
 
-<div className="container">
+        <Link to="/" className="navbar-brand d-flex align-items-center">
 
-<Link className="navbar-brand" to="/">
-CloudBank
-</Link>
+          <i className="bi bi-bank2 bank-logo"></i>
 
-<div>
+          <div className="brand-text">
 
-<Link className="btn btn-light me-2" to="/login">
-Login
-</Link>
+            <h2>CloudBank</h2>
 
-<Link className="btn btn-warning" to="/register">
-Register
-</Link>
+            <span>Enterprise Cloud Banking Platform</span>
 
-</div>
+          </div>
 
-</div>
+        </Link>
 
-</nav>
+        {/* Mobile Button */}
 
-    );
+        <button
+          className="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
+        {/* Menu */}
+
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+
+          <ul className="navbar-nav align-items-center">
+
+            <li className="nav-item">
+
+              <Link className="nav-link" to="/">
+                Home
+              </Link>
+
+            </li>
+
+            <li className="nav-item">
+
+              <Link className="nav-link" to="/dashboard">
+                Dashboard
+              </Link>
+
+            </li>
+
+            <li className="nav-item">
+
+              <Link className="nav-link" to="/accounts">
+                Accounts
+              </Link>
+
+            </li>
+
+            <li className="nav-item">
+
+              <Link className="nav-link" to="/transactions">
+                Transactions
+              </Link>
+
+            </li>
+
+            <li className="nav-item">
+
+              <Link className="nav-link" to="/loans">
+                Loans
+              </Link>
+
+            </li>
+
+            <li className="nav-item ms-3">
+
+              <Link
+                className="btn btn-outline-light login-btn"
+                to="/login"
+              >
+                Login
+              </Link>
+
+            </li>
+
+            <li className="nav-item ms-2">
+
+              <Link
+                className="btn register-btn"
+                to="/register"
+              >
+                Register
+              </Link>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </nav>
+  );
 }
 
 export default Navbar;
