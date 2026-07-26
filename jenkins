@@ -1,0 +1,70 @@
+pipeline {
+    agent any
+    environment{
+        scannerHome = tool 'mysonar';
+    }
+    stages{
+      stage("cleanWS"){
+        steps{
+            cleanWs()
+        }
+        
+    }
+      stage('checkout'){
+          steps{
+              git branch: 'main', credentialsId: 'git', url: 'https://github.com/Shobha722/cloudbank-microservices.git'
+          }
+      }
+      stage('SonarQube Analysis') {
+          steps{
+            withSonarQubeEnv('mysonar') {
+               sh '''
+                export SONAR_SCANNER_OPTS="-Xmx2048m"
+                ${scannerHome}/bin/sonar-scanner
+                  '''         
+             }
+        }
+      }
+      stage('QG'){
+          steps{
+               waitForQualityGate abortPipeline: true, credentialsId: 'sq'
+          }
+      }
+      stage ("Image") {
+         steps {
+            sh 'docker build -t shobha722/cloudbank-acctsvc:acct backend/account-service'
+            sh 'docker build -t shobha722/cloudbank-apigateway:api backend/api-gateway'
+            sh 'docker build -t shobha722/cloudbank-authsvc:auth backend/auth-service'
+            sh 'docker build -t shobha722/cloudbank-loansvc:loan backend/loan-service'
+            sh 'docker build -t shobha722/cloudbank-nfsvc:nf backend/notification-service'
+            sh 'docker build -t shobha722/cloudbank-txnsvc:txn backend/transaction-service'
+            sh 'docker build -t shobha722/cloudbank-frontend:v3 frontend'
+        }
+     }
+      stage('scan'){
+          steps{
+              sh 'trivy image shobha722/cloudbank-acctsvc:acct'
+              sh 'trivy image shobha722/cloudbank-authsvc:auth'
+              sh 'trivy image shobha722/cloudbank-loansvc:loan'
+              sh 'trivy image shobha722/cloudbank-nfsvc:nf'
+              sh 'trivy image shobha722/cloudbank-txnsvc:txn'
+              sh 'trivy image shobha722/cloudbank-frontend:v3'
+          }
+      }
+      stage('push'){
+          steps{
+              script{
+                  withDockerRegistry(credentialsId: 'docker') {
+                   sh 'docker push shobha722/cloudbank-acctsvc:acct'
+                   sh 'docker push shobha722/cloudbank-authsvc:auth'
+                   sh 'docker push shobha722/cloudbank-loansvc:loan'
+                   sh 'docker push shobha722/cloudbank-nfsvc:nf'
+                   sh 'docker push shobha722/cloudbank-txnsvc:txn'
+                   sh 'docker push shobha722/cloudbank-frontend:v3'
+                  }
+              }
+          }
+      }
+      
+    }
+}
