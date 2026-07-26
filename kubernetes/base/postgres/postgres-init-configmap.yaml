@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init-script
+  namespace: cloudbank
+
+data:
+  init.sql: |
+    -- Paste the entire contents of init.sql here

@@ -7,3 +7,11 @@ resources:
   - pvc.yaml
   - deployment.yaml
   - service.yaml
+
+configMapGenerator:
+  - name: postgres-init-script
+    files:
+      - init.sql
+
+generatorOptions:
+  disableNameSuffixHash: true
