@@ -35,7 +35,7 @@ spec:
 
       - name: frontend
 
-        image: shobha722/cloudbank-frontend:v2
+        image: shobha722/cloudbank-frontend:v3
 
         imagePullPolicy: Always
 
