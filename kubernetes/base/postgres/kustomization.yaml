@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - postgres-configmap.yaml
   - postgres-secret.yaml
+  - postgres-init-configmap.yaml
   - pvc.yaml
   - deployment.yaml
   - service.yaml
