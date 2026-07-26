@@ -4,4 +4,4 @@ metadata:
   name: frontend-config
   namespace: cloudbank
 data:
-  REACT_APP_API_URL: "ab58f6f1b383446f19524c04e9766a77-288680617.us-east-2.elb.amazonaws.com"
+  REACT_APP_API_URL: "http://ab58f6f1b383446f19524c04e9766a77-288680617.us-east-2.elb.amazonaws.com"
